@@ -1,40 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
+// Map token position to board coordinates, including finishing lane
+function mapPosToCoordinates(pos, playerColor) {
+  if (pos === 0) return { row: null, col: null }; // at home
 
-  const startBtn = document.getElementById("startBtn");
-  const playerCountInput = document.getElementById("playerCount");
-  const namesDiv = document.getElementById("names");
-  const gameSection = document.getElementById("game");
-  const setupSection = document.getElementById("setup");
-  const turnText = document.getElementById("turnText");
-  const diceText = document.getElementById("diceText");
-  const rollBtn = document.getElementById("rollBtn");
-
-  const TOKENS_PER_PLAYER = 4;
-  const COLORS = ["red","green","yellow","blue"];
-  let players = [];
-  let currentPlayerIndex = 0;
-
-  // Create name inputs dynamically
-  function createNameInputs() {
-    namesDiv.innerHTML = "";
-    for (let i = 0; i < playerCountInput.value; i++) {
-      namesDiv.innerHTML += `<input id="name${i}" placeholder="Player ${i+1}"><br>`;
-    }
+  // Main path 1–52
+  if (pos >= 1 && pos <= 52) {
+    return PATH_POSITIONS[pos - 1];
   }
 
-  playerCountInput.addEventListener("change", createNameInputs);
-  createNameInputs();
+  // Finish lane 53+
+  const finishIndex = pos - 53; // 53–58 for finish lane
+  if (finishIndex >= 0 && finishIndex < FINISH_POSITIONS[playerColor].length) {
+    return FINISH_POSITIONS[playerColor][finishIndex];
+  }
 
-  // Start game
-  startBtn.onclick = () => {
-    const numPlayers = parseInt(playerCountInput.value);
-    players = [];
+  // Center reached
+  return { row: 7, col: 7 };
+}
 
-    for (let i = 0; i < numPlayers; i++) {
-      const name = document.getElementById(`name${i}`).value || COLORS[i];
-      players.push({
-        name,
-        color: COLORS[i],
+// Move token along path + finishing lane
+function moveToken(player, tokenIndex, dice) {
+  let token = player.tokens[tokenIndex];
+
+  if (token === 0 && dice === 6) {
+    player.tokens[tokenIndex] = 1; // enter path
+  } else if (token > 0 && token <= 52) {
+    let nextPos = token + dice;
+    if (nextPos > 52) nextPos = 52 + (nextPos - 52); // move to finish lane
+    player.tokens[tokenIndex] = nextPos;
+  } else if (token > 52) {
+    let nextFinish = token + dice;
+    if (nextFinish > 58) nextFinish = 58; // cap at center
+    player.tokens[tokenIndex] = nextFinish;
+  }
+}        color: COLORS[i],
         tokens: Array(TOKENS_PER_PLAYER).fill(0), // all tokens start at home (0)
         isCodeRed: name.toLowerCase() === "codered"
       });
