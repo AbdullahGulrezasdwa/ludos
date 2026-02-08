@@ -1,0 +1,173 @@
+/* General Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+/* Headers */
+header h1 {
+  font-size: 36px;
+  color: #333;
+  margin-top: 20px;
+}
+
+header p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Setup Section */
+#setup {
+  margin: 20px auto;
+  padding: 15px;
+  width: 350px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+
+#setup input[type="number"] {
+  width: 50px;
+  font-size: 18px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+#setup input[type="text"] {
+  width: 200px;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+/* Game Section */
+#game {
+  margin: 20px auto;
+}
+
+#turnText {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Dice and Button */
+#rollBtn {
+  font-size: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  transition: 0.3s;
+}
+
+#rollBtn:hover {
+  background-color: #45a049;
+}
+
+#diceText {
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+/* Board Container */
+#boardContainer {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  gap: 2px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Board Cells */
+.cell {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Path Cells */
+.cell.path {
+  background-color: #fff;
+}
+
+/* Safe Cells */
+.cell.safe {
+  background-color: #e0e0e0;
+}
+
+/* Home Areas */
+.cell.home.red {
+  background-color: #ffcccc;
+}
+.cell.home.green {
+  background-color: #ccffcc;
+}
+.cell.home.yellow {
+  background-color: #fff2cc;
+}
+.cell.home.blue {
+  background-color: #cce5ff;
+}
+
+/* Tokens */
+.token {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #333;
+}
+
+.token.red { background-color: red; }
+.token.green { background-color: green; }
+.token.yellow { background-color: gold; }
+.token.blue { background-color: blue; }
+
+/* Legend */
+#legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+#legend .token {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Buttons and Inputs */
+button {
+  cursor: pointer;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid #999;
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #555;
+}
