@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ludo King Local Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <header>
+    <h1>Ludo King 🎲</h1>
+    <p>Local 2–4 Player Game — Click Dice to Play!</p>
+  </header>
+
+  <!-- SETUP SECTION -->
+  <section id="setup">
+    <h2>Setup Players</h2>
+    <label for="playerCount">Number of Players (2–4): </label>
+    <input type="number" id="playerCount" min="2" max="4" value="2">
+
+    <div id="names" style="margin-top: 10px;"></div>
+
+    <button id="startBtn" style="margin-top: 15px; padding: 10px 20px; font-size: 16px;">
+      Start Game
+    </button>
+  </section>
+
+  <!-- GAME SECTION -->
+  <section id="game" class="hidden">
+    <h2 id="turnText">Player's Turn</h2>
+
+    <div id="controls" style="margin: 20px;">
+      <button id="rollBtn" style="padding: 10px 20px; font-size: 18px;">Roll Dice 🎲</button>
+      <span id="diceText" style="font-size: 24px; margin-left: 15px;">-</span>
+    </div>
+
+    <!-- BOARD CONTAINER -->
+    <div id="boardContainer" style="position: relative; width: 520px; height: 520px; margin: 20px auto; border: 3px solid #333; background-color: #f9f9f9;">
+      <!-- Board cells will be generated dynamically via JS -->
+    </div>
+
+    <!-- PLAYER LEGEND -->
+    <div id="legend" style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; font-size: 18px;">
+      <div><span class="token red"></span> Red Player</div>
+      <div><span class="token green"></span> Green Player</div>
+      <div><span class="token yellow"></span> Yellow Player</div>
+      <div><span class="token blue"></span> Blue Player</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="margin-top: 30px; font-size: 14px; color: #555;">
+    &copy; Local Ludo Game — Made for Friends
+  </footer>
+
+  <!-- Scripts -->
+  <script src="board.js"></script>
+  <script src="prank.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
